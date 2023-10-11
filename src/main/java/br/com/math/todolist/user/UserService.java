@@ -2,7 +2,6 @@ package br.com.math.todolist.user;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import br.com.math.todolist.hasher.BcryptPasswordHasher;

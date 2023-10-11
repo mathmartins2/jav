@@ -8,7 +8,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 @Component
 public class BcryptPasswordHasher implements PasswordHasher {
 
-  @Value("${bcrypt.cost}")
+  @Value("${spring.bcrypt.cost}")
   private int bcryptCost;
 
   @Override
