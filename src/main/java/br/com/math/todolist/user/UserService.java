@@ -25,9 +25,6 @@ public class UserService {
   @Autowired
   private BcryptPasswordHasher bcryptPasswordHasher;
 
-  @Value("${bcrypt.cost}")
-  private int bcryptCost;
-
   public UserModel create(UserRecordDto userModel) {
     var prevUser = userRepository.findByUsername(userModel.username());
     logger.info("prevUser: {}", prevUser);
