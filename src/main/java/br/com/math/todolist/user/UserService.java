@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.math.todolist.hasher.BcryptPasswordHasher;
+import br.com.math.todolist.hasher.PasswordHasher;
 import br.com.math.todolist.user.dto.UserRecordDto;
 import br.com.math.todolist.user.exception.UserAlreadyExistsException;
 import br.com.math.todolist.user.model.UserModel;
@@ -22,7 +23,7 @@ public class UserService {
   private UserRepository userRepository;
 
   @Autowired
-  private BcryptPasswordHasher bcryptPasswordHasher;
+  private PasswordHasher passwordHasher;
 
   public UserModel create(UserRecordDto userModel) {
     var prevUser = userRepository.findByUsername(userModel.username());
@@ -32,7 +33,7 @@ public class UserService {
     var user = new UserModel();
     BeanUtils.copyProperties(userModel, user);
     logger.info("user: {}", user);
-    var hashedPassword = bcryptPasswordHasher.encode(userModel.password());
+    var hashedPassword = passwordHasher.encode(userModel.password());
     user.setPassword(hashedPassword);
     return userRepository.save(user);
   }
